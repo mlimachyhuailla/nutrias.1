@@ -1,0 +1,2310 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Otter World | Mundo de Nutrias</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+/* =========================
+   ESTILOS GENERALES
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:"Poppins", sans-serif;
+    background:#eefaff;
+    color:#23404a;
+    transition:0.4s;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:rgba(255,255,255,0.95);
+    backdrop-filter:blur(10px);
+    box-shadow:0 3px 15px rgba(0,0,0,0.08);
+}
+
+nav{
+    max-width:1200px;
+    margin:auto;
+    padding:15px 25px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+}
+
+.logo{
+    font-size:25px;
+    font-weight:800;
+    color:#168aad;
+    white-space:nowrap;
+}
+
+.logo span{
+    color:#8c5a3c;
+}
+
+.nav-links{
+    display:flex;
+    gap:8px;
+    list-style:none;
+}
+
+.nav-links button{
+    border:none;
+    background:transparent;
+    padding:10px 14px;
+    border-radius:20px;
+    cursor:pointer;
+    color:#31545f;
+    font-family:inherit;
+    font-weight:500;
+    transition:0.3s;
+}
+
+.nav-links button:hover,
+.nav-links button.active{
+    background:#bdefff;
+    color:#087ea4;
+}
+
+.theme-btn{
+    border:none;
+    background:#168aad;
+    color:white;
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    cursor:pointer;
+    font-size:18px;
+    transition:0.3s;
+}
+
+.theme-btn:hover{
+    transform:rotate(20deg) scale(1.08);
+}
+
+/* =========================
+   PÁGINAS
+========================= */
+
+.page{
+    display:none;
+    animation:aparecer 0.5s ease;
+}
+
+.page.active{
+    display:block;
+}
+
+@keyframes aparecer{
+    from{
+        opacity:0;
+        transform:translateY(15px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    min-height:620px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+
+    padding:60px 20px;
+
+    background:
+    linear-gradient(
+        rgba(15,142,180,0.65),
+        rgba(4,80,105,0.75)
+    ),
+    url("https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1600&q=80");
+
+    background-size:cover;
+    background-position:center;
+
+    color:white;
+}
+
+.hero-content{
+    max-width:800px;
+}
+
+.hero h1{
+    font-size:clamp(45px,8vw,85px);
+    margin-bottom:15px;
+    text-shadow:3px 4px 10px rgba(0,0,0,0.25);
+}
+
+.hero h2{
+    font-size:30px;
+    margin-bottom:20px;
+}
+
+.hero p{
+    font-size:18px;
+    line-height:1.8;
+    margin-bottom:30px;
+}
+
+/* =========================
+   BOTONES
+========================= */
+
+.main-btn{
+    border:none;
+    background:white;
+    color:#087ea4;
+
+    padding:14px 28px;
+
+    border-radius:30px;
+
+    font-family:inherit;
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:0.3s;
+}
+
+.main-btn:hover{
+    transform:translateY(-3px) scale(1.03);
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+.blue-btn{
+    background:#168aad;
+    color:white;
+
+    border:none;
+
+    padding:13px 25px;
+
+    border-radius:25px;
+
+    font-family:inherit;
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:0.3s;
+}
+
+.blue-btn:hover{
+    background:#087ea4;
+    transform:translateY(-3px);
+}
+
+/* =========================
+   CONTENEDORES
+========================= */
+
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:70px 25px;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:45px;
+}
+
+.section-title h2{
+    font-size:38px;
+    color:#087ea4;
+    margin-bottom:10px;
+}
+
+.section-title p{
+    color:#607d86;
+}
+
+/* =========================
+   TARJETAS
+========================= */
+
+.cards{
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(240px,1fr));
+
+    gap:25px;
+}
+
+.card{
+    background:white;
+
+    padding:30px;
+
+    border-radius:25px;
+
+    box-shadow:
+    0 8px 25px rgba(20,90,110,0.1);
+
+    transition:0.3s;
+
+    border:1px solid #d9f4fc;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+
+    box-shadow:
+    0 15px 35px rgba(20,90,110,0.18);
+}
+
+.card-icon{
+    font-size:45px;
+    margin-bottom:15px;
+}
+
+.card h3{
+    color:#168aad;
+    margin-bottom:10px;
+}
+
+.card p{
+    line-height:1.7;
+    color:#58717a;
+}
+
+/* =========================
+   IMÁGENES DE TARJETAS
+========================= */
+
+.species-img{
+    width:100%;
+    height:210px;
+
+    object-fit:cover;
+
+    border-radius:18px;
+
+    margin-bottom:18px;
+
+    transition:0.4s;
+}
+
+.card:hover .species-img{
+    transform:scale(1.03);
+}
+
+/* =========================
+   DATOS CURIOSOS
+========================= */
+
+.fact-box{
+    max-width:750px;
+
+    margin:auto;
+
+    background:
+    linear-gradient(
+        135deg,
+        #bdefff,
+        #eaffff
+    );
+
+    padding:45px;
+
+    border-radius:30px;
+
+    text-align:center;
+
+    box-shadow:
+    0 10px 30px rgba(20,120,150,0.12);
+}
+
+.fact-box .otter{
+    font-size:70px;
+    margin-bottom:20px;
+}
+
+#fact{
+    font-size:21px;
+    line-height:1.7;
+    margin-bottom:25px;
+    color:#31545f;
+}
+
+/* =========================
+   QUIZ
+========================= */
+
+.quiz{
+    max-width:750px;
+
+    margin:auto;
+
+    background:white;
+
+    padding:35px;
+
+    border-radius:25px;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,0.08);
+}
+
+.question{
+    margin-bottom:30px;
+}
+
+.question h3{
+    margin-bottom:15px;
+    color:#31545f;
+}
+
+.answer{
+    display:block;
+
+    width:100%;
+
+    padding:13px;
+
+    margin:8px 0;
+
+    border:2px solid #d6eef5;
+
+    border-radius:12px;
+
+    background:#f8fdff;
+
+    cursor:pointer;
+
+    text-align:left;
+
+    font-family:inherit;
+
+    transition:0.3s;
+}
+
+.answer:hover{
+    background:#dff7ff;
+
+    border-color:#168aad;
+
+    transform:translateX(4px);
+}
+
+.answer.correct{
+    background:#d8f8df;
+    border-color:#43a047;
+}
+
+.answer.incorrect{
+    background:#ffe0e0;
+    border-color:#e53935;
+}
+
+/* =========================
+   GALERÍA
+========================= */
+
+.gallery{
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(230px,1fr));
+
+    gap:20px;
+}
+
+.gallery img{
+    width:100%;
+    height:250px;
+
+    object-fit:cover;
+
+    border-radius:20px;
+
+    cursor:pointer;
+
+    transition:0.4s;
+}
+
+.gallery img:hover{
+    transform:scale(1.04);
+
+    filter:brightness(0.8);
+}
+
+/* =========================
+   CONSERVACIÓN
+========================= */
+
+.conservation{
+    background:
+    linear-gradient(
+        135deg,
+        #dff8ff,
+        #f5ffff
+    );
+
+    border-radius:30px;
+
+    padding:45px;
+}
+
+.conservation ul{
+    margin-top:20px;
+    padding-left:25px;
+}
+
+.conservation li{
+    margin:13px 0;
+    line-height:1.6;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    background:#123b46;
+    color:white;
+
+    text-align:center;
+
+    padding:35px 20px;
+}
+
+footer p{
+    margin:7px;
+    opacity:0.9;
+}
+
+/* =========================
+   POPUP DEL QUIZ
+========================= */
+
+.quiz-popup{
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,30,40,0.78);
+
+    backdrop-filter:blur(7px);
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+
+    z-index:10000;
+
+    padding:20px;
+}
+
+.quiz-popup.show{
+    display:flex;
+
+    animation:popupEntrada 0.4s ease;
+}
+
+@keyframes popupEntrada{
+
+    from{
+        opacity:0;
+        transform:scale(0.7);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+
+}
+
+.popup-content{
+
+    width:min(500px,95%);
+
+    background:white;
+
+    padding:40px;
+
+    border-radius:30px;
+
+    text-align:center;
+
+    position:relative;
+
+    overflow:hidden;
+
+    box-shadow:
+    0 20px 60px rgba(0,0,0,0.3);
+
+    animation:popupSaltito 0.6s ease;
+}
+
+@keyframes popupSaltito{
+
+    0%{
+        transform:scale(0.5);
+    }
+
+    70%{
+        transform:scale(1.08);
+    }
+
+    100%{
+        transform:scale(1);
+    }
+
+}
+
+.popup-content h2{
+
+    font-size:35px;
+
+    color:#168aad;
+
+    margin-bottom:15px;
+
+}
+
+.popup-content.gameover h2{
+    color:#e53935;
+}
+
+.popup-emoji{
+
+    font-size:90px;
+
+    margin:15px 0;
+
+    animation:emojiFlotar 1.5s infinite alternate;
+}
+
+@keyframes emojiFlotar{
+
+    from{
+        transform:translateY(0);
+    }
+
+    to{
+        transform:translateY(-10px);
+    }
+
+}
+
+.close-popup{
+
+    background:#168aad;
+
+    color:white;
+
+    border:none;
+
+    padding:12px 25px;
+
+    border-radius:25px;
+
+    cursor:pointer;
+
+    font-family:inherit;
+
+    font-weight:600;
+
+    transition:0.3s;
+}
+
+.close-popup:hover{
+    background:#087ea4;
+    transform:scale(1.05);
+}
+
+/* =========================
+   CONFETI
+========================= */
+
+.confetti{
+
+    position:fixed;
+
+    top:-20px;
+
+    width:10px;
+
+    height:18px;
+
+    z-index:11000;
+
+    pointer-events:none;
+
+    animation:
+    confetiCaer 3.5s linear forwards;
+
+}
+
+@keyframes confetiCaer{
+
+    0%{
+        transform:
+        translateY(0)
+        rotate(0deg);
+
+        opacity:1;
+    }
+
+    100%{
+
+        transform:
+        translateY(110vh)
+        rotate(720deg);
+
+        opacity:0;
+    }
+
+}
+
+/* =========================
+   CARITAS TRISTES
+========================= */
+
+.sad-face{
+
+    position:fixed;
+
+    top:-50px;
+
+    font-size:35px;
+
+    z-index:11000;
+
+    pointer-events:none;
+
+    animation:
+    caraCaer 3s ease-in forwards;
+
+}
+
+@keyframes caraCaer{
+
+    0%{
+
+        transform:
+        translateY(0)
+        rotate(0deg);
+
+        opacity:1;
+    }
+
+    100%{
+
+        transform:
+        translateY(110vh)
+        rotate(360deg);
+
+        opacity:0;
+    }
+
+}
+
+/* =========================
+   BURBUJAS
+========================= */
+
+.bubble{
+
+    position:fixed;
+
+    bottom:-50px;
+
+    width:20px;
+    height:20px;
+
+    border:
+    2px solid
+    rgba(255,255,255,0.7);
+
+    border-radius:50%;
+
+    animation:
+    subir 7s linear infinite;
+
+    z-index:2;
+
+    pointer-events:none;
+}
+
+@keyframes subir{
+
+    from{
+
+        transform:translateY(0);
+
+        opacity:0;
+    }
+
+    20%{
+        opacity:1;
+    }
+
+    to{
+
+        transform:
+        translateY(-100vh);
+
+        opacity:0;
+    }
+
+}
+
+/* =========================
+   MODO OSCURO
+========================= */
+
+body.dark{
+
+    background:#10282f;
+
+    color:#e9fbff;
+}
+
+body.dark header{
+
+    background:
+    rgba(20,45,52,0.96);
+}
+
+body.dark .nav-links button{
+
+    color:#d8f7ff;
+}
+
+body.dark .nav-links button:hover,
+body.dark .nav-links button.active{
+
+    background:#245968;
+}
+
+body.dark .section-title h2{
+
+    color:#74ddf7;
+}
+
+body.dark .section-title p{
+
+    color:#bdd7dd;
+}
+
+body.dark .card,
+body.dark .quiz{
+
+    background:#183942;
+
+    border-color:#285864;
+}
+
+body.dark .card p,
+body.dark .question h3{
+
+    color:#d3e8ed;
+}
+
+body.dark .fact-box{
+
+    background:#183942;
+}
+
+body.dark #fact{
+
+    color:#d5edf2;
+}
+
+body.dark .answer{
+
+    background:#214750;
+
+    border-color:#396875;
+
+    color:white;
+}
+
+body.dark .conservation{
+
+    background:#183942;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:850px){
+
+    nav{
+
+        flex-wrap:wrap;
+
+        gap:10px;
+    }
+
+    .nav-links{
+
+        order:3;
+
+        width:100%;
+
+        overflow-x:auto;
+
+        justify-content:center;
+    }
+
+    .hero{
+
+        min-height:550px;
+    }
+
+}
+
+@media(max-width:550px){
+
+    .nav-links{
+
+        justify-content:flex-start;
+    }
+
+    .hero h2{
+
+        font-size:23px;
+    }
+
+    .hero p{
+
+        font-size:15px;
+    }
+
+    .section-title h2{
+
+        font-size:30px;
+    }
+
+    .fact-box,
+    .quiz,
+    .conservation{
+
+        padding:25px;
+    }
+
+    .popup-content h2{
+
+        font-size:28px;
+    }
+
+    .popup-emoji{
+
+        font-size:70px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+
+<nav>
+
+<div class="logo">
+🦦 Otter<span>World</span>
+</div>
+
+<ul class="nav-links">
+
+<li>
+<button class="nav-btn active" data-page="inicio">
+Inicio
+</button>
+</li>
+
+<li>
+<button class="nav-btn" data-page="conocelas">
+Conócelas
+</button>
+</li>
+
+<li>
+<button class="nav-btn" data-page="datos">
+Datos curiosos
+</button>
+</li>
+
+<li>
+<button class="nav-btn" data-page="quiz">
+Quiz
+</button>
+</li>
+
+<li>
+<button class="nav-btn" data-page="galeria">
+Galería
+</button>
+</li>
+
+<li>
+<button class="nav-btn" data-page="cuidalas">
+Cuídalas
+</button>
+</li>
+
+</ul>
+
+<button
+class="theme-btn"
+id="themeBtn">
+☾
+</button>
+
+</nav>
+
+</header>
+
+
+<!-- =========================
+     CONTENIDO PRINCIPAL
+========================= -->
+
+<main>
+
+
+<!-- =========================
+     INICIO
+========================= -->
+
+<section
+id="inicio"
+class="page active">
+
+<div class="hero">
+
+<div class="hero-content">
+
+<h1>
+🦦 Otter World
+</h1>
+
+<h2>
+Descubre el maravilloso mundo de las nutrias
+</h2>
+
+<p>
+Conoce a estos increíbles mamíferos acuáticos,
+descubre sus curiosidades, aprende sobre su hábitat
+y pon a prueba tus conocimientos.
+</p>
+
+<button
+class="main-btn"
+onclick="irA('conocelas')">
+
+Explorar el mundo de las nutrias
+
+</button>
+
+</div>
+
+</div>
+
+
+<div class="container">
+
+<div class="section-title">
+
+<h2>
+¿Por qué son especiales?
+</h2>
+
+<p>
+Las nutrias son animales inteligentes, ágiles y perfectamente
+adaptados a los ambientes acuáticos.
+</p>
+
+</div>
+
+
+<div class="cards">
+
+
+<article class="card">
+
+<div class="card-icon">
+🌊
+</div>
+
+<h3>
+Excelentes nadadoras
+</h3>
+
+<p>
+Su cuerpo alargado y sus patas adaptadas
+les permiten desplazarse fácilmente por el agua.
+</p>
+
+</article>
+
+
+<article class="card">
+
+<div class="card-icon">
+🧠
+</div>
+
+<h3>
+Muy inteligentes
+</h3>
+
+<p>
+Algunas especies utilizan piedras u otros objetos
+para abrir alimentos como conchas.
+</p>
+
+</article>
+
+
+<article class="card">
+
+<div class="card-icon">
+❤️
+</div>
+
+<h3>
+Comportamiento social
+</h3>
+
+<p>
+Algunas nutrias viven en grupos y mantienen
+diferentes formas de comunicación.
+</p>
+
+</article>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     CONÓCELAS
+========================= -->
+
+<section
+id="conocelas"
+class="page">
+
+<div class="container">
+
+<div class="section-title">
+
+<h2>
+Conoce a las nutrias
+</h2>
+
+<p>
+Algunas características de estos fascinantes animales.
+</p>
+
+</div>
+
+
+<div class="cards">
+
+
+<article class="card">
+
+<img
+class="species-img"
+src="https://i.pinimg.com/736x/a7/1b/1a/a71b1afe97fab9f4b65acfdf6382e1dc.jpg"
+alt="Nutria - ¿Qué son?">
+
+<h3>
+¿Qué son?
+</h3>
+
+<p>
+Las nutrias son mamíferos pertenecientes a la familia
+Mustelidae. Muchas especies pasan gran parte de su vida
+en ambientes acuáticos.
+</p>
+
+</article>
+
+
+<article class="card">
+
+<img
+class="species-img"
+src="https://i.pinimg.com/736x/65/22/ea/6522ea17a68a47b9898ea0fd3a9f5cbe.jpg"
+alt="Hábitat de las nutrias">
+
+<h3>
+¿Dónde viven?
+</h3>
+
+<p>
+Pueden encontrarse en ríos, lagos, humedales, costas
+y otros ecosistemas acuáticos, dependiendo de la especie.
+</p>
+
+</article>
+
+
+<article class="card">
+
+<img
+class="species-img"
+src="https://i.pinimg.com/1200x/78/fd/c6/78fdc6b1eba7f5a0458336d6a2a850dd.jpg"
+alt="Alimentación de las nutrias">
+
+<h3>
+¿Qué comen?
+</h3>
+
+<p>
+Su alimentación depende de la especie y el hábitat.
+Puede incluir peces, crustáceos, moluscos y otros
+animales acuáticos.
+</p>
+
+</article>
+
+
+<article class="card">
+
+<img
+class="species-img"
+src="https://i.pinimg.com/736x/85/cf/a2/85cfa26339d23a532351fc347a99d91b.jpg"
+alt="Pelaje de una nutria">
+
+<h3>
+Su pelaje
+</h3>
+
+<p>
+Tienen un pelaje muy denso que ayuda a conservar
+el calor corporal en ambientes acuáticos.
+</p>
+
+</article>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     DATOS CURIOSOS
+========================= -->
+
+<section
+id="datos"
+class="page">
+
+<div class="container">
+
+<div class="section-title">
+
+<h2>
+Datos curiosos
+</h2>
+
+<p>
+Presiona el botón para descubrir una curiosidad.
+</p>
+
+</div>
+
+
+<div class="fact-box">
+
+<div class="otter">
+🦦
+</div>
+
+<p id="fact">
+¿Sabías que algunas nutrias utilizan piedras
+como herramientas para abrir alimentos?
+</p>
+
+<button
+class="blue-btn"
+onclick="nuevoDato()">
+
+✨ Descubrir otro dato
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     QUIZ
+========================= -->
+
+<section
+id="quiz"
+class="page">
+
+<div class="container">
+
+<div class="section-title">
+
+<h2>
+Quiz de nutrias
+</h2>
+
+<p>
+Responde correctamente las 3 preguntas.
+</p>
+
+</div>
+
+
+<div
+class="quiz"
+id="quizBox">
+
+
+<!-- PREGUNTA 1 -->
+
+<div class="question">
+
+<h3>
+1. ¿Qué tipo de animal es una nutria?
+</h3>
+
+<button
+class="answer"
+onclick="respuesta(this,1,false)">
+
+A. Ave
+
+</button>
+
+<button
+class="answer"
+onclick="respuesta(this,1,true)">
+
+B. Mamífero
+
+</button>
+
+<button
+class="answer"
+onclick="respuesta(this,1,false)">
+
+C. Reptil
+
+</button>
+
+</div>
+
+
+<!-- PREGUNTA 2 -->
+
+<div class="question">
+
+<h3>
+2. ¿Dónde pasan gran parte de su vida muchas nutrias?
+</h3>
+
+<button
+class="answer"
+onclick="respuesta(this,2,false)">
+
+A. En desiertos
+
+</button>
+
+<button
+class="answer"
+onclick="respuesta(this,2,true)">
+
+B. En ambientes acuáticos
+
+</button>
+
+<button
+class="answer"
+onclick="respuesta(this,2,false)">
+
+C. En zonas completamente secas
+
+</button>
+
+</div>
+
+
+<!-- PREGUNTA 3 -->
+
+<div class="question">
+
+<h3>
+3. ¿Qué pueden utilizar algunas nutrias como herramienta?
+</h3>
+
+<button
+class="answer"
+onclick="respuesta(this,3,true)">
+
+A. Piedras
+
+</button>
+
+<button
+class="answer"
+onclick="respuesta(this,3,false)">
+
+B. Hojas de papel
+
+</button>
+
+<button
+class="answer"
+onclick="respuesta(this,3,false)">
+
+C. Botellas
+
+</button>
+
+</div>
+
+
+<button
+class="blue-btn"
+onclick="reiniciarQuiz()">
+
+🔄 Reiniciar quiz
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     GALERÍA
+========================= -->
+
+<section
+id="galeria"
+class="page">
+
+<div class="container">
+
+<div class="section-title">
+
+<h2>
+Galería de nutrias
+</h2>
+
+<p>
+Algunas imágenes para conocerlas mejor.
+</p>
+
+</div>
+
+
+<div class="gallery">
+
+
+<img
+src="https://i.pinimg.com/736x/08/08/61/080861627d3db489c5277ef62dcf4090.jpg"
+alt="Nutria en la naturaleza"
+onclick="ampliarImagen(this)">
+
+
+<img
+src="https://i.pinimg.com/1200x/49/9b/07/499b0723871b5833cce566280f7e2427.jpg"
+alt="Nutria en el agua"
+onclick="ampliarImagen(this)">
+
+
+<img
+src="https://i.pinimg.com/736x/3d/6a/4f/3d6a4f9de6fccbb5969d78d94253fca5.jpg"
+alt="Nutria"
+onclick="ampliarImagen(this)">
+
+
+<img
+src="https://i.pinimg.com/736x/ce/5c/6a/ce5c6ab9e142fa15eacfe31f30e9f179.jpg"
+alt="Nutria en el agua"
+onclick="ampliarImagen(this)">
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     CUIDALAS
+========================= -->
+
+<section
+id="cuidalas"
+class="page">
+
+<div class="container">
+
+<div class="section-title">
+
+<h2>
+¿Cómo podemos cuidar a las nutrias?
+</h2>
+
+<p>
+Proteger los ecosistemas acuáticos también ayuda
+a proteger a muchas especies.
+</p>
+
+</div>
+
+
+<div class="conservation">
+
+<h3>
+🌎 Algunas acciones importantes
+</h3>
+
+<ul>
+
+<li>
+Evitar tirar basura en ríos, lagos y océanos.
+</li>
+
+<li>
+Reducir la contaminación del agua.
+</li>
+
+<li>
+Proteger los ecosistemas donde viven las nutrias.
+</li>
+
+<li>
+Respetar a los animales silvestres y observarlos
+sin molestarlos.
+</li>
+
+<li>
+Informarnos sobre la conservación de la biodiversidad.
+</li>
+
+</ul>
+
+<br>
+
+<button
+class="blue-btn"
+onclick="mensajeCuidado()">
+
+💙 Mostrar mensaje
+
+</button>
+
+<p
+id="mensaje-cuidado"
+style="margin-top:20px;">
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+<p>
+🦦 Otter World
+</p>
+
+<p>
+Un pequeño proyecto para aprender sobre las nutrias
+y la importancia de proteger los ecosistemas acuáticos.
+</p>
+
+<p>
+© 2026 | Proyecto HTML + CSS + JavaScript
+</p>
+
+</footer>
+
+
+<!-- =========================
+     POPUP DEL QUIZ
+========================= -->
+
+<div
+class="quiz-popup"
+id="quizPopup">
+
+<div
+class="popup-content"
+id="popupContent">
+
+<h2 id="popupTitle">
+¡Felicidades Ganaste!
+</h2>
+
+<div
+class="popup-emoji"
+id="popupEmoji">
+
+🎉🦦🎉
+
+</div>
+
+<p id="popupMessage">
+
+¡Respondiste correctamente las 3 preguntas!
+
+</p>
+
+<br>
+
+<button
+class="close-popup"
+onclick="cerrarPopup()">
+
+Continuar
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
+<script>
+
+/* =========================
+   NAVEGACIÓN
+========================= */
+
+const botones =
+document.querySelectorAll(".nav-btn");
+
+const paginas =
+document.querySelectorAll(".page");
+
+
+botones.forEach(boton => {
+
+    boton.addEventListener("click", () => {
+
+        const pagina =
+        boton.dataset.page;
+
+        paginas.forEach(paginaElemento => {
+
+            paginaElemento.classList.remove("active");
+
+        });
+
+        document
+        .getElementById(pagina)
+        .classList.add("active");
+
+
+        botones.forEach(b => {
+
+            b.classList.remove("active");
+
+        });
+
+        boton.classList.add("active");
+
+
+        window.scrollTo({
+            top:0,
+            behavior:"smooth"
+        });
+
+    });
+
+});
+
+
+/* =========================
+   IR A UNA PÁGINA
+========================= */
+
+function irA(pagina){
+
+    paginas.forEach(p => {
+
+        p.classList.remove("active");
+
+    });
+
+
+    document
+    .getElementById(pagina)
+    .classList.add("active");
+
+
+    botones.forEach(b => {
+
+        b.classList.remove("active");
+
+        if(b.dataset.page === pagina){
+
+            b.classList.add("active");
+
+        }
+
+    });
+
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+/* =========================
+   DATOS CURIOSOS
+========================= */
+
+const datos = [
+
+"Algunas nutrias utilizan piedras como herramientas para abrir alimentos.",
+
+"Las nutrias tienen un pelaje muy denso que ayuda a mantenerlas calientes.",
+
+"Muchas nutrias son excelentes nadadoras y tienen cuerpos adaptados para moverse en el agua.",
+
+"Las nutrias pueden utilizar diferentes sonidos para comunicarse.",
+
+"Las nutrias marinas pueden descansar en el agua y algunas utilizan algas para mantenerse en una zona.",
+
+"Las nutrias pertenecen a la familia de los mustélidos, junto con animales como las comadrejas y los tejones.",
+
+"Las patas y la cola de las nutrias ayudan a controlar sus movimientos mientras nadan."
+
+];
+
+
+function nuevoDato(){
+
+    const numero =
+    Math.floor(
+        Math.random() * datos.length
+    );
+
+    document
+    .getElementById("fact")
+    .textContent = datos[numero];
+
+}
+
+
+/* =========================
+   QUIZ
+========================= */
+
+let puntos = 0;
+
+let respondidas = {
+    1:false,
+    2:false,
+    3:false
+};
+
+let quizTerminado = false;
+
+
+function respuesta(
+    boton,
+    numero,
+    correcta
+){
+
+    if(
+        respondidas[numero] ||
+        quizTerminado
+    ){
+
+        return;
+
+    }
+
+
+    respondidas[numero] = true;
+
+
+    if(correcta){
+
+        boton.classList.add("correct");
+
+        puntos++;
+
+
+        if(puntos === 3){
+
+            quizTerminado = true;
+
+            setTimeout(() => {
+
+                mostrarVictoria();
+
+            },500);
+
+        }
+
+    }
+
+    else{
+
+        boton.classList.add("incorrect");
+
+        quizTerminado = true;
+
+
+        setTimeout(() => {
+
+            mostrarGameOver();
+
+        },400);
+
+    }
+
+}
+
+
+/* =========================
+   VICTORIA
+========================= */
+
+function mostrarVictoria(){
+
+    const popup =
+    document.getElementById("quizPopup");
+
+    const contenido =
+    document.getElementById("popupContent");
+
+    const titulo =
+    document.getElementById("popupTitle");
+
+    const emoji =
+    document.getElementById("popupEmoji");
+
+    const mensaje =
+    document.getElementById("popupMessage");
+
+
+    contenido.classList.remove("gameover");
+
+
+    titulo.textContent =
+    "¡Felicidades Ganaste!";
+
+
+    emoji.textContent =
+    "🎉🦦🎉";
+
+
+    mensaje.textContent =
+    "¡Respondiste correctamente las 3 preguntas!";
+
+
+    popup.classList.add("show");
+
+
+    crearConfeti();
+
+}
+
+
+/* =========================
+   GAME OVER
+========================= */
+
+function mostrarGameOver(){
+
+    const popup =
+    document.getElementById("quizPopup");
+
+    const contenido =
+    document.getElementById("popupContent");
+
+    const titulo =
+    document.getElementById("popupTitle");
+
+    const emoji =
+    document.getElementById("popupEmoji");
+
+    const mensaje =
+    document.getElementById("popupMessage");
+
+
+    contenido.classList.add("gameover");
+
+
+    titulo.textContent =
+    "¡GAME OVER!";
+
+
+    emoji.textContent =
+    "😢😞😭";
+
+
+    mensaje.textContent =
+    "Una respuesta fue incorrecta. ¡Inténtalo nuevamente!";
+
+
+    popup.classList.add("show");
+
+
+    crearCarasTristes();
+
+}
+
+
+/* =========================
+   CERRAR POPUP
+========================= */
+
+function cerrarPopup(){
+
+    document
+    .getElementById("quizPopup")
+    .classList.remove("show");
+
+
+    reiniciarQuiz();
+
+}
+
+
+/* =========================
+   REINICIAR QUIZ
+========================= */
+
+function reiniciarQuiz(){
+
+    puntos = 0;
+
+
+    respondidas = {
+        1:false,
+        2:false,
+        3:false
+    };
+
+
+    quizTerminado = false;
+
+
+    document
+    .querySelectorAll(".answer")
+    .forEach(boton => {
+
+        boton.classList.remove("correct");
+
+        boton.classList.remove("incorrect");
+
+    });
+
+}
+
+
+/* =========================
+   CREAR CONFETI
+========================= */
+
+function crearConfeti(){
+
+    const cantidad = 100;
+
+
+    for(
+        let i = 0;
+        i < cantidad;
+        i++
+    ){
+
+        const confeti =
+        document.createElement("div");
+
+
+        confeti.classList.add("confetti");
+
+
+        confeti.style.left =
+        Math.random() * 100 + "vw";
+
+
+        confeti.style.width =
+        6 + Math.random() * 10 + "px";
+
+
+        confeti.style.height =
+        8 + Math.random() * 15 + "px";
+
+
+        confeti.style.background =
+        obtenerColorConfeti();
+
+
+        confeti.style.animationDuration =
+        2 + Math.random() * 3 + "s";
+
+
+        confeti.style.animationDelay =
+        Math.random() * 0.8 + "s";
+
+
+        document.body.appendChild(confeti);
+
+
+        setTimeout(() => {
+
+            confeti.remove();
+
+        },5000);
+
+    }
+
+}
+
+
+/* =========================
+   COLORES DEL CONFETI
+========================= */
+
+function obtenerColorConfeti(){
+
+    const colores = [
+
+        "#168aad",
+        "#48cae4",
+        "#90e0ef",
+        "#ffca3a",
+        "#ff595e",
+        "#8ac926",
+        "#c77dff"
+
+    ];
+
+
+    return colores[
+        Math.floor(
+            Math.random() * colores.length
+        )
+    ];
+
+}
+
+
+/* =========================
+   CARITAS TRISTES
+========================= */
+
+function crearCarasTristes(){
+
+    const caras = [
+
+        "😢",
+        "😞",
+        "😭",
+        "☹️",
+        "😔",
+        "🥺"
+
+    ];
+
+
+    for(
+        let i = 0;
+        i < 25;
+        i++
+    ){
+
+        const cara =
+        document.createElement("div");
+
+
+        cara.classList.add("sad-face");
+
+
+        cara.textContent =
+        caras[
+            Math.floor(
+                Math.random() * caras.length
+            )
+        ];
+
+
+        cara.style.left =
+        Math.random() * 100 + "vw";
+
+
+        cara.style.animationDuration =
+        2 + Math.random() * 3 + "s";
+
+
+        cara.style.animationDelay =
+        Math.random() * 0.8 + "s";
+
+
+        document.body.appendChild(cara);
+
+
+        setTimeout(() => {
+
+            cara.remove();
+
+        },5000);
+
+    }
+
+}
+
+
+/* =========================
+   MODO OSCURO
+========================= */
+
+const themeBtn =
+document.getElementById("themeBtn");
+
+
+themeBtn.addEventListener(
+"click",
+() => {
+
+    document.body.classList.toggle("dark");
+
+
+    if(
+        document.body.classList.contains("dark")
+    ){
+
+        themeBtn.textContent = "☀";
+
+    }
+
+    else{
+
+        themeBtn.textContent = "☾";
+
+    }
+
+});
+
+
+/* =========================
+   AMPLIAR IMÁGENES
+========================= */
+
+function ampliarImagen(imagen){
+
+    const ventana =
+    document.createElement("div");
+
+
+    ventana.style.position =
+    "fixed";
+
+    ventana.style.top =
+    "0";
+
+    ventana.style.left =
+    "0";
+
+    ventana.style.width =
+    "100%";
+
+    ventana.style.height =
+    "100%";
+
+    ventana.style.background =
+    "rgba(0,0,0,0.85)";
+
+    ventana.style.display =
+    "flex";
+
+    ventana.style.alignItems =
+    "center";
+
+    ventana.style.justifyContent =
+    "center";
+
+    ventana.style.zIndex =
+    "9999";
+
+    ventana.style.cursor =
+    "pointer";
+
+
+    const img =
+    document.createElement("img");
+
+
+    img.src =
+    imagen.src;
+
+
+    img.style.maxWidth =
+    "90%";
+
+    img.style.maxHeight =
+    "85%";
+
+    img.style.borderRadius =
+    "20px";
+
+
+    ventana.appendChild(img);
+
+
+    ventana.onclick = () => {
+
+        ventana.remove();
+
+    };
+
+
+    document.body.appendChild(ventana);
+
+}
+
+
+/* =========================
+   MENSAJE DE CUIDADO
+========================= */
+
+function mensajeCuidado(){
+
+    document
+    .getElementById("mensaje-cuidado")
+    .textContent =
+    "💙 Cada acción cuenta. Mantener limpios nuestros ecosistemas ayuda a proteger la vida que depende de ellos.";
+
+}
+
+
+/* =========================
+   BURBUJAS
+========================= */
+
+function crearBurbuja(){
+
+    const burbuja =
+    document.createElement("div");
+
+
+    burbuja.classList.add("bubble");
+
+
+    burbuja.style.left =
+    Math.random() * 100 + "%";
+
+
+    burbuja.style.width =
+    10 + Math.random() * 25 + "px";
+
+
+    burbuja.style.height =
+    burbuja.style.width;
+
+
+    burbuja.style.animationDuration =
+    4 + Math.random() * 5 + "s";
+
+
+    document.body.appendChild(burbuja);
+
+
+    setTimeout(() => {
+
+        burbuja.remove();
+
+    },9000);
+
+}
+
+
+setInterval(
+    crearBurbuja,
+    1200
+);
+
+</script>
+
+</body>
+</html>
